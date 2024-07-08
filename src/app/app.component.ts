@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
@@ -8,6 +9,23 @@ import { RouterOutlet } from '@angular/router';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
+  
 export class AppComponent {
   title = 'Test-Password';
+
+    form = new FormGroup({
+   
+      password: new FormControl([
+          '', Validators.required,
+        Validators.minLength(8)          
+      ])
+   });
+
+  // constructor(private fb: FormBuilder) {}
+
+  get password() {
+      return this.form.controls.password as FormControl;
+  }
+
 }
+
